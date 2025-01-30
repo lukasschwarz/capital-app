@@ -1,0 +1,29 @@
+{
+  "name": "capital-frontend",
+  "version": "1.0.0",
+  "description": "Frontend für die Hauptstadt-Verwaltung",
+  "main": "main.tsx",
+  "scripts": {
+    "start": "vite"
+  },
+  "dependencies": {
+    "@react-google-maps/api": "^2.20.5",
+    "@reduxjs/toolkit": "^2.5.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.12.0",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
