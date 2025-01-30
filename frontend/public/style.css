@@ -1,0 +1,35 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.map {
+    min-height: 500px;
+}
+
+.main {
+    position: relative;
+}
+
+.bacon {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 3;
+    text-align: center;
+}
+
+.list {
+    max-height: 200px;
+    overflow: scroll;
+}
+
+.row {
+    float: left;
+    width: 310px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
