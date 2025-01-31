@@ -50,8 +50,8 @@ const capitalSlice = createSlice({
                 }
             })
 
-            .addCase(removeCapitalAsync.fulfilled, (state, action: PayloadAction<string>) => {
-                state.capitals = state.capitals.filter((c) => c.id !== parseInt(action.payload));
+            .addCase(removeCapitalAsync.fulfilled, (state, action: PayloadAction<number>) => {
+                state.capitals = state.capitals.filter((c) => c.id !== action.payload);
             })
 
             .addCase(updateMarkerColorAsync.fulfilled, (state, action: PayloadAction<Capital>) => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../lib/store';
-import Map from './Map';
+import GoogleMap from './GoogleMap';
+import MapBox from './MapBox';
 import CapitalList from './CapitalList';
-import AddCapitalForm from './AddCapitalForm';
 
 export default function App() {
     const { loading, error } = useSelector((state: RootState) => state.capitals);
@@ -14,8 +14,7 @@ export default function App() {
                 {loading && <p>Lade Hauptstädte...</p>}
                 {error && <p style={{ color: 'red' }}>Fehler: {error}</p>}
             </div>
-            <Map />
-            <AddCapitalForm />
+            { import.meta.env.VITE_APP_USE_MAP === 'MAPBOX' ? <MapBox /> : <GoogleMap /> }
             <CapitalList />
         </div>
     );

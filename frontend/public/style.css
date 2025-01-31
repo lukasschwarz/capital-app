@@ -1,15 +1,26 @@
+html {
+    font-family: 'Open Sans', sans-serif;
+}
+
 html,
-body {
+body,
+#root,
+.main,
+.map,
+.map > div,
+#map {
     padding: 0;
     margin: 0;
-}
-
-.map {
-    min-height: 500px;
-}
-
-.main {
+    height: 100%;
+    min-height: 100%;
     position: relative;
+}
+
+#map {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
 }
 
 .bacon {
@@ -20,16 +31,75 @@ body {
     text-align: center;
 }
 
+.marker-info,
+.list,
+.bacon p {
+    display: inline-block;
+    background: rgba(255,255,255,.8);
+    padding: .5em 1em;
+    border-radius: 1em;
+    border: 1px solid #333;
+    box-shadow: #333 2px 2px 8px;
+}
+
 .list {
+    z-index: 3;
+    position: fixed;
+    bottom: 10px;
+    left: 5px;
+    padding-right: 5px;
+}
+
+.list ul {
     max-height: 200px;
     overflow: scroll;
+    padding-left: 5px;
+    list-style: none;
+    padding-right: 15px;
 }
 
 .row {
     float: left;
-    width: 310px;
+    width: 376px;
     display: inline-block;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+input[type="number"] {
+    max-width: 70px;
+}
+
+.openBoxMarker,
+.mapboxgl-popup {
+    position: absolute;
+    top: 0;
+}
+
+.openBoxMarker,
+.marker {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 3px;
+}
+
+.mapboxgl-popup,
+.marker-info {
+    z-index: 4;
+    text-align: center;
+}
+
+.marker-info button {
+    display: block;
+    width: 100%;
+}
+
+.marker-info:not(.openBox) {
+    margin-top: 16px;
+    margin-left: 16px;
+    border-top-left-radius: 0;
+    width: 120px;
 }

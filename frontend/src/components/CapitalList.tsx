@@ -3,6 +3,7 @@ import { RootState } from '../lib/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeCapitalAsync, updateCapitalAsync } from '../lib/thunks';
 import { Capital } from '../lib/types';
+import AddCapitalForm from "./AddCapitalForm";
 
 export default function CapitalList() {
   const dispatch = useDispatch();
@@ -24,8 +25,9 @@ export default function CapitalList() {
     dispatch(removeCapitalAsync(id));
   }, [dispatch]);
 
-  return (
+  return !!capitals.length ? (
       <div className={'list'}>
+        <AddCapitalForm />
         <ul>
           {capitals.map(c => (
               <li key={c.id}>
@@ -59,5 +61,5 @@ export default function CapitalList() {
           ))}
         </ul>
       </div>
-  );
+  ) : '';
 }

@@ -5,12 +5,6 @@ import { fetchCapitalsAsync, removeCapitalAsync, updateMarkerColorAsync } from '
 import { Capital } from '../lib/types';
 import { RootState } from '../lib/store';
 
-const mapContainerStyle = {
-    width: '100%',
-    height: '500px',
-    position: 'relative',
-};
-
 const center = { lat: 50, lng: 10 };
 
 export default function CapitalMap() {
@@ -45,9 +39,8 @@ export default function CapitalMap() {
         <LoadScript googleMapsApiKey={googleMapsApiKey}>
             <div className={'map'}>
                 <GoogleMap
-                    mapContainerStyle={mapContainerStyle}
                     center={center}
-                    zoom={2}
+                    zoom={3}
                     onLoad={onLoad}
                 >
                     {capitals.map((capital) => (
@@ -57,13 +50,9 @@ export default function CapitalMap() {
                             mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                         >
                             <div
+                                className={'marker'}
                                 style={{
-                                    backgroundColor: capital.color || 'red',
-                                    width: '32px',
-                                    height: '32px',
-                                    cursor: 'pointer',
-                                    zIndex: 2,
-                                    opacity: .7
+                                    backgroundColor: capital.color || 'red'
                                 }}
                                 onClick={() => setSelectedMarker(capital)}
                             />
@@ -78,16 +67,7 @@ export default function CapitalMap() {
                             }}
                             mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                         >
-                            <div
-                                style={{
-                                    backgroundColor: 'white',
-                                    padding: '10px',
-                                    width: '120px',
-                                    border: '1px solid black',
-                                    borderRadius: '5px',
-                                    zIndex: 3,
-                                }}
-                            >
+                            <div className={'marker-info'}>
                                 <h3>{selectedMarker.name}</h3>
                                 <p>{selectedMarker.country}</p>
                                 <button onClick={() => handleUpdateMarkerColor(selectedMarker.id)}>

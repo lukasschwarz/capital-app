@@ -48,9 +48,9 @@ export const updateCapitalAsync = createAsyncThunk<Capital, Capital>(
     }
 );
 
-export const removeCapitalAsync = createAsyncThunk<string, string>(
+export const removeCapitalAsync = createAsyncThunk<number, number>(
     'capitals/removeCapital',
-    async (id, { rejectWithValue }) => {
+    async (id: number, { rejectWithValue }) => {
       try {
         const res = await fetch(`http://localhost:3000/capital/${id}`, { method: 'DELETE' });
         if (!res.ok) throw new Error('Fehler beim Entfernen der Hauptstadt');

@@ -10,7 +10,7 @@ Diese Anwendung ermöglicht das Verwalten von Hauptstädten mit einer interaktiv
 ## Installation
 ### Voraussetzungen
 - Node.js (>= 16)
-- PostgreSQL (brew install postgresql@14 && brew services start postgresql)
+- PostgreSQL (brew install postgresql && brew services start postgresql)
 - npm oder yarn
 
 ### Backend
