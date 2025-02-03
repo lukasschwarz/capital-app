@@ -4,29 +4,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCapitalsAsync, removeCapitalAsync, updateMarkerColorAsync } from '../lib/thunks';
 import { Capital } from '../lib/types';
 import { RootState } from '../lib/store';
+import { useMap } from './MapContext';
 
 const center = { lat: 50, lng: 10 };
 
 export default function CapitalMap() {
     const dispatch = useDispatch();
-
     const { capitals } = useSelector((state: RootState) => state.capitals);
     const [selectedMarker, setSelectedMarker] = useState<Capital | null>(null);
-    const [isMapLoaded, setIsMapLoaded] = useState<boolean>(false);
+    const { map, setMap } = useMap();
 
     const googleMapsApiKey = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY;
 
-    const onLoad = useCallback(() => {
-        if (window.google && window.google.maps && !isMapLoaded) {
-            setIsMapLoaded(true);
+    const onLoad = useCallback((mapInstance: google.maps.Map) => {
+        if (!map) {
+            setMap(mapInstance);
             dispatch(fetchCapitalsAsync());
         }
-    }, [dispatch, isMapLoaded]);
+    }, [dispatch, map, setMap]);
 
     const handleUpdateMarkerColor = useCallback((id: number) => {
         const newColor = prompt('Neue Farbe in Hex:');
         if (newColor) {
-            dispatch(updateMarkerColorAsync({id, color: newColor}));
+            dispatch(updateMarkerColorAsync({ id, color: newColor }));
         }
     }, [dispatch]);
 
@@ -37,7 +37,7 @@ export default function CapitalMap() {
 
     return (
         <LoadScript googleMapsApiKey={googleMapsApiKey}>
-            <div className={'map'}>
+            <div className="map">
                 <GoogleMap
                     center={center}
                     zoom={3}
@@ -50,10 +50,8 @@ export default function CapitalMap() {
                             mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                         >
                             <div
-                                className={'marker'}
-                                style={{
-                                    backgroundColor: capital.color || 'red'
-                                }}
+                                className="marker"
+                                style={{ backgroundColor: capital.color || 'red' }}
                                 onClick={() => setSelectedMarker(capital)}
                             />
                         </OverlayView>
@@ -67,7 +65,7 @@ export default function CapitalMap() {
                             }}
                             mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                         >
-                            <div className={'marker-info'}>
+                            <div className="marker-info">
                                 <h3>{selectedMarker.name}</h3>
                                 <p>{selectedMarker.country}</p>
                                 <button onClick={() => handleUpdateMarkerColor(selectedMarker.id)}>

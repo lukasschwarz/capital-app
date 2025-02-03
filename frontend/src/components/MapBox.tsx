@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCapitalsAsync, removeCapitalAsync, updateMarkerColorAsync } from '../lib/thunks';
 import { RootState } from '../lib/store';
+import { useMap } from './MapContext';
 
 mapboxgl.accessToken = import.meta.env.VITE_APP_MAPBOX_ACCESS_TOKEN;
 
@@ -11,7 +12,7 @@ let markers = {}
 export default function CapitalMap() {
     const dispatch = useDispatch();
     const { capitals } = useSelector((state: RootState) => state.capitals);
-    const [map, setMap] = useState<mapboxgl.Map | null>(null);
+    const { map, setMap } = useMap();
 
     useEffect(() => {
         const initializeMap = new mapboxgl.Map({

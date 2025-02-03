@@ -1,5 +1,6 @@
 html {
     font-family: 'Open Sans', sans-serif;
+    margin-top: 5px;
 }
 
 html,
@@ -46,7 +47,7 @@ body,
     z-index: 3;
     position: fixed;
     bottom: 10px;
-    left: 5px;
+    left: 10px;
     padding-right: 5px;
 }
 
@@ -65,6 +66,7 @@ body,
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 input[type="number"] {
@@ -102,4 +104,8 @@ input[type="number"] {
     margin-left: 16px;
     border-top-left-radius: 0;
     width: 120px;
+}
+
+.mapboxgl-control-container {
+    display: none;
 }
